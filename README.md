@@ -18,9 +18,9 @@ Benchmark results:
 
 ## Task 2
 
-### 1. Check out `reader.py`
+### 1. Check out [`reader.py`](https://github.com/glebosotov/inno-total-virtualization-rabbitmq/blob/master/reader.py)
 
-### 2. Dockerfile
+### 2. [Dockerfile](https://github.com/glebosotov/inno-total-virtualization-rabbitmq/blob/master/Dockerfile)
 
 ```dockerfile
 FROM python:3.10
@@ -41,15 +41,15 @@ I pass the arguments using the env values, since I plan to use that in docker co
 
 ## Task 3
 
-Check out `docker-compose.yml`
+Check out [`docker-compose.yml`](https://github.com/glebosotov/inno-total-virtualization-rabbitmq/blob/master/docker-compose.yml)
 
 Things to note:
 
 - I am using local folder for postgres data storage (volume)
 - I am using an env file to configure everything
-- I have a sql init script passed to docker entrypoint, it creates 2 tables
+- I have a [sql init script](https://github.com/glebosotov/inno-total-virtualization-rabbitmq/blob/master/sql/create_tables.sql) passed to docker entrypoint, it creates 2 tables
 - The reader logs a message to table message1 if it contains 'bebra' and to table message2 otherwise
-- The sender sends a message to the queue every seconds iterating between 'bebra' and 'bobra'
+- The [sender](https://github.com/glebosotov/inno-total-virtualization-rabbitmq/blob/master/sender.py) sends a message to the queue every seconds iterating between 'bebra' and 'bobra'
 
 ## Task 4
 
@@ -66,7 +66,7 @@ Things to note:
 
 ### Things to note
 
-- Postgres should use a persistent volume, but I assume that it is not required for this lab. I would use PersistentVolume with local storage.
+- Postgres should use a [persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/), but I assume that it is not required for this lab. I would use PersistentVolume type with local storage.
 
 ### My results
 
