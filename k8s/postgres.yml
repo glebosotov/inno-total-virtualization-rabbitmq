@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbit-db
+spec:
+  selector:
+    matchLabels:
+      app: rabbit-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rabbit-db
+    spec:
+      containers:
+        - name: rabbit-db
+          image: postgres:14.6
+          ports:
+            - containerPort: 5432
+              name: "postgres"
+          env:
+            - name: POSTGRES_DB
+              value: rabbit_messages
+            - name: POSTGRES_USER
+              value: rabbit_db
+            - name: POSTGRES_PASSWORD
+              value: example
+          resources:
+            limits:
+              memory: 4Gi
+              cpu: "2"

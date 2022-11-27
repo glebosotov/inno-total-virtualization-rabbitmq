@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reader
+  labels:
+    app: reader
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: reader
+  template:
+    metadata:
+      labels:
+        app: reader
+    spec:
+      containers:
+      - name: server
+        image: glebosotov/inno-tv-rabbitmq-reader:latest
+        ports:
+        - containerPort: 5672
+        env:
+          - name: HOST
+            value: "10.102.201.79"
+          - name: PORT
+            value: "5672"
+          - name: LOGIN
+            value: "rabbit_user"
+          - name: PASSWORD
+            value: "rabbit_password"
+          - name: POSTGRES_DB
+            value: rabbit_messages
+          - name: POSTGRES_USER
+            value: rabbit_db
+          - name: POSTGRES_PASSWORD
+            value: example
+          - name: POSTGRES_HOST
+            value: "10.100.0.239"
